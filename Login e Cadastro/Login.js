@@ -1,10 +1,19 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { UtilsContexto } from "./Context";
 
 export function Login(props) {
 
+    const [email, setEmail] = useState("")
+    const {utils, setUtils} = useContext(UtilsContexto)
+
     const [senha, setSenha] = useState("")
     const [usuario, setUsuario] = useState("")
+
+    function goToCadastro(){
+        setUtils ({...utils, email: email, usuario: usuario, senha: senha})
+        props.navigation.navigate('Cadastro')
+    }
 
     return (
         <View style={{ alignItems: "center", backgroundColor: "lightgray" }}>

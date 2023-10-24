@@ -1,10 +1,24 @@
 import { View, Text, TextInput, TouchableOpacity, Switch, Image } from "react-native";
-import{ useState } from 'react';
+import{ useState, useContext } from 'react';
+import { UtilsContexto } from "./Context";
 
 
 export function Cadastro(props) {
     
     const [inicio, setInicio] = useState(false)
+    const {utils, setUtils} = useContext(UtilsContexto)
+
+    const [nome, setNome] = useState("")
+    const [idade, setIdade] = useState("")
+    const [sexo, setSexo] = useState("")
+    const [email, setEmail] = useState("")
+
+
+
+    function goToUsuario(){
+        setUtils ({...utils, nome: nome, idade: idade, sexo: sexo, email: email})
+        props.navigation.navigate('Usuario')
+    }
 
     return (
         <View style={{ alignItems: "center", backgroundColor: "lightgray" }}>
@@ -26,7 +40,10 @@ export function Cadastro(props) {
             <View style={{ alignItems: "flex-start" }}>
                 <Text style={{ marginTop: "30px" }}>Nome:</Text>
                 <div>
-                    <TextInput style={{ borderRadius: "5px", backgroundColor: "white", marginBottom: "20px", width: "350px", height: "30px" }}/>
+                    <TextInput 
+                    onChangeText={e => setNome(e)}
+                    value = {nome}
+                    style={{ borderRadius: "5px", backgroundColor: "white", marginBottom: "20px", width: "350px", height: "30px" }}/>
                 </div>
             </View>
 
@@ -34,12 +51,18 @@ export function Cadastro(props) {
 
                 <View style={{alignItems: "flex-start"}}>
                 <Text style={{ marginTop: "10px" }}>Idade:</Text>
-                    <TextInput style={{ borderRadius: "5px", backgroundColor: "white", marginBottom: "20px", width: "160px", height: "30px", marginRight: "30px"}} />
+                    <TextInput 
+                    onChangeText={e => setIdade(e)}
+                    value = {idade}
+                    style={{ borderRadius: "5px", backgroundColor: "white", marginBottom: "20px", width: "160px", height: "30px", marginRight: "30px"}} />
                 </View>
 
                 <View style={{alignItems: "flex-start"}}>
                 <Text style={{ marginTop: "10px" }}>Sexo:</Text>
-                    <TextInput style={{ borderRadius: "5px", backgroundColor: "white", marginBottom: "20px", width: "160px", height: "30px" }}/>
+                    <TextInput 
+                    onChangeText={e => setSexo(e)}
+                    value = {sexo}
+                    style={{ borderRadius: "5px", backgroundColor: "white", marginBottom: "20px", width: "160px", height: "30px" }}/>
                 </View>
 
             </View>
@@ -47,21 +70,27 @@ export function Cadastro(props) {
             <View style={{ alignItems: "flex-start" }}>
                 <Text style={{ marginTop: "10px" }}>Email:</Text>
                 <div>
-                    <TextInput style={{ borderRadius: "5px", backgroundColor: "white", marginBottom: "20px", width: "350px", height: "30px" }}/>
+                    <TextInput 
+                    onChangeText={e => setEmail(e)}
+                    value = {email}
+                    style={{ borderRadius: "5px", backgroundColor: "white", marginBottom: "20px", width: "350px", height: "30px" }}/>
                 </div>
             </View>
             
             <View style={{ alignItems: "flex-start" }}>
                 <Text style={{ marginTop: "10px" }}>Senha:</Text>
                 <div>
-                    <TextInput style={{ borderRadius: "5px", backgroundColor: "white", marginBottom: "20px", width: "350px", height: "30px" }}/>
+                    <TextInput 
+                    style={{ borderRadius: "5px", backgroundColor: "white", marginBottom: "20px", width: "350px", height: "30px" }}/>
                 </div>
+
             </View>
 
             <View style={{ alignItems: "flex-start" }}>
                 <Text style={{ marginTop: "10px" }}>Confirma Senha:</Text>
                 <div>
-                    <TextInput style={{ borderRadius: "5px", backgroundColor: "white", marginBottom: "20px", width: "350px", height: "30px" }}/>
+                    <TextInput 
+                    style={{ borderRadius: "5px", backgroundColor: "white", marginBottom: "20px", width: "350px", height: "30px" }}/>
                 </div>
             </View>
 
@@ -90,8 +119,8 @@ export function Cadastro(props) {
                         height: "50px",
                         alignItems: "center",
                         justifyContent: "center"
-                    }}>
-                    <Text style={{ fontSize: "20px" }}>Login</Text>
+                    }} onPress={() => goToUsuario()} >
+                    <Text style={{ fontSize: "20px" }}>Cadastrar</Text>
                 </TouchableOpacity>
 
             </div>
@@ -106,8 +135,8 @@ export function Cadastro(props) {
                         height: "50px",
                         alignItems: "center",
                         justifyContent: "center"
-                    }} onPress={() => props.navigation.navigate("Login")}>
-                    <Text style={{ fontSize: "20px" }}>Cadastrar</Text>
+                    }} onPress={() => goToUsuario()}>
+                    <Text style={{ fontSize: "20px" }}>Login</Text>
                 </TouchableOpacity>
 
             </div>
