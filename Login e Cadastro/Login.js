@@ -10,9 +10,13 @@ export function Login(props) {
     const [senha, setSenha] = useState("")
     const [usuario, setUsuario] = useState("")
 
-    function goToCadastro(){
-        setUtils ({...utils, email: email, usuario: usuario, senha: senha})
-        props.navigation.navigate('Cadastro')
+    function goToUsuario(){
+        if(usuario == usuario && senha == senha){
+        setUtils ({...utils, nome: nome, idade: idade, sexo: sexo, email: email})
+        props.navigation.navigate('Usuario')
+        }
+        else
+            return
     }
 
     return (
@@ -56,7 +60,7 @@ export function Login(props) {
                         height: "50px",
                         alignItems: "center",
                         justifyContent: "center"
-                    }} onPress={() => props.navigation.navigate("Usuario")}>
+                    }} onPress={() => goToUsuario("Usuario")}>
                     <Text style={{ fontSize: "20px" }}>Login</Text>
                 </TouchableOpacity>
 

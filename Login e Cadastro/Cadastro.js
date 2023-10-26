@@ -12,12 +12,14 @@ export function Cadastro(props) {
     const [idade, setIdade] = useState("")
     const [sexo, setSexo] = useState("")
     const [email, setEmail] = useState("")
+    const [senha, setSenha] = useState("")
+    const [confirmarSenha, setConfirmarSenha] = useState("")
 
 
 
-    function goToUsuario(){
-        setUtils ({...utils, nome: nome, idade: idade, sexo: sexo, email: email})
-        props.navigation.navigate('Usuario')
+    function goToLogin(){
+        setUtils ({...utils, nome: nome, idade: idade, sexo: sexo, email: email, senha: senha})
+        props.navigation.navigate('Login')
     }
 
     return (
@@ -80,7 +82,9 @@ export function Cadastro(props) {
             <View style={{ alignItems: "flex-start" }}>
                 <Text style={{ marginTop: "10px" }}>Senha:</Text>
                 <div>
-                    <TextInput 
+                <TextInput 
+                    onChangeText={e => setSenha(e)}
+                    value = {senha}
                     style={{ borderRadius: "5px", backgroundColor: "white", marginBottom: "20px", width: "350px", height: "30px" }}/>
                 </div>
 
@@ -90,6 +94,8 @@ export function Cadastro(props) {
                 <Text style={{ marginTop: "10px" }}>Confirma Senha:</Text>
                 <div>
                     <TextInput 
+                    onChangeText={e => setConfirmarSenha(e)}
+                    value = {confirmarSenha}
                     style={{ borderRadius: "5px", backgroundColor: "white", marginBottom: "20px", width: "350px", height: "30px" }}/>
                 </div>
             </View>
@@ -119,7 +125,7 @@ export function Cadastro(props) {
                         height: "50px",
                         alignItems: "center",
                         justifyContent: "center"
-                    }} onPress={() => goToUsuario()} >
+                    }} onPress={() => goToLogin()} >
                     <Text style={{ fontSize: "20px" }}>Cadastrar</Text>
                 </TouchableOpacity>
 
@@ -135,8 +141,8 @@ export function Cadastro(props) {
                         height: "50px",
                         alignItems: "center",
                         justifyContent: "center"
-                    }} onPress={() => goToUsuario()}>
-                    <Text style={{ fontSize: "20px" }}>Login</Text>
+                    }}>
+                    <Text style={{ fontSize: "20px" }}>Cancelar</Text>
                 </TouchableOpacity>
 
             </div>
