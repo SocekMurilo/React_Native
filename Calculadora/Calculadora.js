@@ -1,11 +1,22 @@
 import { View, Text, TextInput, TouchableOpacity, StyleSheet} from "react-native";
 import { useContext, useState } from 'react';
-import { PrivateValueStore } from "@react-navigation/native";
+import { UtilsContexto } from "./Context";
+
 
 export function Calculadora(props) {
 
     const [text, setText] = useState("")
+    const [resultado, setResultado] = useState("")
+    const {utils, setUtils} = useContext(UtilsContexto)
 
+
+    function goToHistorico(){
+        setUtils({...utils, text: text, resultado: resultado})
+        props.navigation.navigate('Historico')
+    }
+    function Result(){
+        eval(text)
+    }
 
     return (
         <View style={{ alignItems: "center", backgroundColor: "lightgray" }}>
@@ -13,18 +24,18 @@ export function Calculadora(props) {
             <Text style={{ fontSize: "70px"}}>Calculadora</Text>
 
             </View>
-            <View style={{border: "solid 1px black", width: "500px", height: "100px", borderRadius: "10px",marginTop: "20px"}}>
+        <View style={{border: "solid 1px black", width: "500px", height: "100px", borderRadius: "10px",marginTop: "20px", backgroundColor: "white"}}>
                 <View style={{marginTop: "5px", marginLeft: "10px"}}>
-                    <Text></Text>
+                    <Text>{text}{resultado}</Text>
                 </View>
             </View>
 
             <View style={{display: "flex", flexDirection: "row"}}>
-                <TouchableOpacity style={styles.Bot} onPress={() => setText(text + "+")}>+</TouchableOpacity>
-                <TouchableOpacity style={styles.Bot} onPress={() => setText(text + "-")}>-</TouchableOpacity>
-                <TouchableOpacity style={styles.Bot} onPress={() => setText(text + "/")}>/</TouchableOpacity>
-                <TouchableOpacity style={styles.Bot} onPress={() => setText(text + "X")}>X</TouchableOpacity>
-                <TouchableOpacity style={styles.Bot} onPress={() => setText(text + "=")}>=</TouchableOpacity>  
+                <TouchableOpacity style={styles.Bot} onPress={() => setText(text + " + ")}>+</TouchableOpacity>
+                <TouchableOpacity style={styles.Bot} onPress={() => setText(text + " - ")}>-</TouchableOpacity>
+                <TouchableOpacity style={styles.Bot} onPress={() => setText(text + " / ")}>/</TouchableOpacity>
+                <TouchableOpacity style={styles.Bot} onPress={() => setText(text + " * ")}>X</TouchableOpacity>
+                <TouchableOpacity style={styles.Bot} onPress={() => setText(text + " = " + eval(text))}  >=</TouchableOpacity>  
             </View>
             <View style={{display: "flex", flexDirection: "row", marginTop: "20px"}}>
                 <TouchableOpacity style={styles.Bot} onPress={() => setText(text + "1")}>1</TouchableOpacity>
@@ -42,8 +53,11 @@ export function Calculadora(props) {
                 <TouchableOpacity style={styles.Bot} onPress={() => setText(text + "9")}>9</TouchableOpacity>
             </View>
             <View style={{display: "flex", flexDirection: "row"}}>
-                <TouchableOpacity style={styles.Bot2}>Limpar</TouchableOpacity>
-                <TouchableOpacity style={styles.Bot2} >Histórico</TouchableOpacity>
+                <TouchableOpacity style={styles.Bot} onPress={() => setText(text + "0")}>0</TouchableOpacity>
+            </View>
+            <View style={{display: "flex", flexDirection: "row"}}>
+                <TouchableOpacity name="Limpar" style={styles.Bot2} onPress={() => setText("")}>Limpar</TouchableOpacity>
+                <TouchableOpacity onPress={() => goToHistorico("Historico")} style={styles.Bot2} >Histórico</TouchableOpacity>
             </View>
         </View>
 
