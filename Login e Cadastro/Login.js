@@ -3,27 +3,23 @@ import { useContext, useState } from 'react';
 import { UtilsContexto } from "./Context";
 
 export function Login(props) {
-
-    const [email, setEmail] = useState("")
     const {utils, setUtils} = useContext(UtilsContexto)
 
     const [senha, setSenha] = useState("")
     const [usuario, setUsuario] = useState("")
 
     function goToUsuario(){
-        if(usuario == usuario && senha == senha){
-        setUtils ({...utils, nome: nome, idade: idade, sexo: sexo, email: email})
-        props.navigation.navigate('Usuario')
+        if(usuario == utils.usuario && senha == utils.senha){
+            props.navigation.navigate('Usuario')
         }
-        else
-            return
+            
     }
 
     return (
         <View style={{ alignItems: "center", backgroundColor: "lightgray" }}>
 
             <View style={{ marginTop: "100px"}}>
-            <Text style={{ fontSize: "70px"}}>LOGIN </Text>
+            <Text style={{ fontSize: "70px"}}>LOGIN</Text>
             </View>
 
             <View style={{ alignItems: "flex-start" }}>

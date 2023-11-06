@@ -8,7 +8,7 @@ export function Cadastro(props) {
     const [inicio, setInicio] = useState(false)
     const {utils, setUtils} = useContext(UtilsContexto)
 
-    const [nome, setNome] = useState("")
+    const [usuario, setUsuario] = useState("")
     const [idade, setIdade] = useState("")
     const [sexo, setSexo] = useState("")
     const [email, setEmail] = useState("")
@@ -18,7 +18,7 @@ export function Cadastro(props) {
 
 
     function goToLogin(){
-        setUtils ({...utils, nome: nome, idade: idade, sexo: sexo, email: email, senha: senha})
+        setUtils ({...utils, usuario: usuario, idade: idade, sexo: sexo, email: email, senha: senha})
         props.navigation.navigate('Login')
     }
 
@@ -40,11 +40,11 @@ export function Cadastro(props) {
             </View>
 
             <View style={{ alignItems: "flex-start" }}>
-                <Text style={{ marginTop: "30px" }}>Nome:</Text>
+                <Text style={{ marginTop: "30px" }}>Usuario:</Text>
                 <div>
                     <TextInput 
-                    onChangeText={e => setNome(e)}
-                    value = {nome}
+                    onChangeText={e => setUsuario(e)}
+                    value = {usuario}
                     style={{ borderRadius: "5px", backgroundColor: "white", marginBottom: "20px", width: "350px", height: "30px" }}/>
                 </div>
             </View>
