@@ -18,9 +18,32 @@ export function Cadastro(props) {
 
 
     function goToLogin(){
-        setUtils ({...utils, usuario: usuario, idade: idade, sexo: sexo, email: email, senha: senha})
+        if (utils && utils.utils){
+            setUtils ({...utils, 
+                users : [
+                    ...utils.users,
+                    {usuario: usuario, 
+                    idade: idade, 
+                    sexo: sexo, 
+                    email: email, 
+                    senha: senha}
+                ],
+            },);
+        }
+        else{
+            setUtils ({
+                users : [
+                    {usuario: usuario, 
+                    idade: idade, 
+                    sexo: sexo, 
+                    email: email, 
+                    senha: senha}
+                ],
+            },);
+        }
         props.navigation.navigate('Login')
     }
+    
 
     return (
         <View style={{ alignItems: "center", backgroundColor: "lightgray" }}>
@@ -141,7 +164,7 @@ export function Cadastro(props) {
                         height: "50px",
                         alignItems: "center",
                         justifyContent: "center"
-                    }}>
+                    }} onPress={() => props.navigation.navigate('Login')}>
                     <Text style={{ fontSize: "20px" }}>Cancelar</Text>
                 </TouchableOpacity>
 
