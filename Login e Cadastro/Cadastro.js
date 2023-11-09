@@ -18,7 +18,7 @@ export function Cadastro(props) {
 
 
     function goToLogin(){
-        if (utils && utils.utils){
+        if (utils && utils.users){
             setUtils ({...utils, 
                 users : [
                     ...utils.users,
@@ -26,9 +26,10 @@ export function Cadastro(props) {
                     idade: idade, 
                     sexo: sexo, 
                     email: email, 
-                    senha: senha}
+                    senha: senha
+                    },
                 ],
-            },);
+            });
         }
         else{
             setUtils ({

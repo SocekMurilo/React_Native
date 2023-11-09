@@ -43,11 +43,11 @@ function UserBox(props) {
         <View style={{ alignItems: "center", backgroundColor: "lightgray" }}>
             <View style={{ border: "solid 1px black", width: "500px", height: "100px", borderRadius: "10px", marginBottom: "20px", display: "flex", flexDirection: "Row"}}>
                 <View style={{ marginTop: "5px", marginLeft: "10px"}}>
-                    <Text>Nome: {props.utils.usuario} </Text>
-                    <Text>Idade: {props.utils.idade} </Text>
-                    <Text>Sexo: {props.utils.sexo} </Text>
-                    <Text>Email: {props.utils.email} </Text>
-                    <Text>Id: {props.utils.id} </Text>
+                    <Text>Nome: {props.usuario} </Text>
+                    <Text>Idade: {props.idade} </Text>
+                    <Text>Sexo: {props.sexo} </Text>
+                    <Text>Email: {props.email} </Text>
+                    <Text>Id: {props.id} </Text>
                 </View>
                 <View>
                 <TouchableOpacity

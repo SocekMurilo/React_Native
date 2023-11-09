@@ -22,6 +22,8 @@ npm install @react-navigation/native
 
 npm install @react-navigation/stack
 
+npm install axios
+
 
 Copia e cola em bloco de notas e salva como .bat
  ||
